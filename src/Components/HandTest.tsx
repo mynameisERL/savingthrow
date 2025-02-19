@@ -2,13 +2,36 @@ import { observer } from "mobx-react";
 
 import Hand from "../Classes/Hand";
 import { useState } from "react";
+import dab from "../assets/dab.gif";
+import Confetti from "react-confetti";
+import { useWindowSize } from "react-use";
 
 const HandTest = observer(() => {
   const [hand] = useState(() => new Hand(5, 100));
-
+  const { width, height } = useWindowSize();
   return (
     <div>
+      <Confetti
+        run={hand.scoreInfo.handName === "Five of a Kind"}
+        width={width}
+        height={height}
+      />
       <section>
+        {hand.scoreInfo.handName === "Five of a Kind" && (
+          <div>
+            <p className="text-7xl"> SAVING THROW :OOOOOOOOO</p>
+            <div className="flex flex-row">
+              <img src={dab} />
+              <img src={dab} />
+              <img src={dab} />
+              <img src={dab} />
+              <img src={dab} />
+              <img src={dab} />
+              <img src={dab} />
+              <img src={dab} />
+            </div>
+          </div>
+        )}
         <p>{hand.scoreInfo.handName}</p>
         <p>Score: {hand.scoreInfo.baseValue}</p>
         <p>Rolls Left : {hand.rollsLeft}</p>
@@ -21,7 +44,7 @@ const HandTest = observer(() => {
         Select All
       </button>
 
-      <ul className="flex flex-row">
+      <ul className="flex flex-row justify-center">
         {hand.currentDice.map((dice, index) => {
           const selected = hand.selectedDice[index] ? true : false;
 
@@ -31,7 +54,6 @@ const HandTest = observer(() => {
                 selected && "border border-b-emerald-600"
               }`}
             >
-              <p>{dice.currentNumber}</p>
               <button
                 onClick={() => {
                   if (selected) {
@@ -41,7 +63,7 @@ const HandTest = observer(() => {
                   }
                 }}
               >
-                {selected ? "-" : "+"}
+                {dice.currentNumber}
               </button>
             </li>
           );
