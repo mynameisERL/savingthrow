@@ -1,14 +1,10 @@
 import "./App.css";
-import DieRoller from "./Components/Die";
+import HandTest from "./Components/HandTest";
 
 function App() {
   return (
     <div>
-      <DieRoller />
-      <DieRoller />
-      <DieRoller />
-      <DieRoller />
-      <DieRoller />
+      <HandTest />
     </div>
   );
 }

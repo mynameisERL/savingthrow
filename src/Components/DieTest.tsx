@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import Die from "../Classes/Die";
 import { useState } from "react";
 
-const DieRoller = observer(() => {
+const DieTest = observer(() => {
   const [die] = useState(() => new Die());
   console.log(die);
   return (
@@ -20,4 +20,4 @@ const DieRoller = observer(() => {
   );
 });
 
-export default DieRoller;
+export default DieTest;
