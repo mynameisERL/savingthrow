@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 
 import Hand from "../Classes/Hand";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const HandTest = observer(() => {
   const [hand] = useState(() => new Hand(5, 100));

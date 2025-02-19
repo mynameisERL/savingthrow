@@ -1,4 +1,4 @@
-import { makeObservable, observable, action, reaction, computed } from "mobx";
+import { makeObservable, observable, action } from "mobx";
 import Die from "./Die";
 import Scorer from "./Scorer";
 import { ScoreResult } from "./handPredicates";
