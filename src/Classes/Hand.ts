@@ -1,6 +1,7 @@
 import { makeObservable, observable, action, reaction, computed } from "mobx";
 import Die from "./Die";
 import Scorer from "./Scorer";
+import { ScoreResult } from "./handPredicates";
 // type NumString = "0" | "1" | "2" | "3" | "4" | "5";
 // Rich how do we do this
 // pls help
@@ -8,11 +9,9 @@ import Scorer from "./Scorer";
 class Hand {
   currentHandScore: number;
   currentDice: Die[];
-  selectedDice: { [key: number]: Die }; // roll selectdice.foreach, roll
+  selectedDice: { [key: number]: Die };
   rollsLeft: number;
-
-  scorer: Scorer;
-  // scorer
+  scoreInfo: ScoreResult;
 
   constructor(amountOfDice: number, rollsLeft: number) {
     this.currentDice = Array(amountOfDice)
@@ -20,21 +19,38 @@ class Hand {
       .map(() => new Die());
     this.rollsLeft = rollsLeft;
     this.currentHandScore = 0;
-    this.selectedDice = {};
-    this.scorer = new Scorer(this.currentDice);
-
+    this.selectedDice = [];
+    this.scoreInfo = {
+      handName: "Ready to Roll",
+      baseValue: 0,
+      value: true,
+      scoreTuple: [0, 0],
+    } as ScoreResult;
     makeObservable(this, {
       currentHandScore: observable,
       currentDice: observable,
       selectedDice: observable,
       rollsLeft: observable,
-      scorer: observable,
+      scoreInfo: observable,
+      calculateScore: action,
       rollSelected: action,
       selectDie: action,
       unselectDie: action,
       decreaseRolls: action,
       increaseRolls: action,
     });
+  }
+
+  calculateScore() {
+    const scorer = new Scorer(this.currentDice);
+
+    const score = scorer.calculateHand();
+    console.log(
+      this.currentDice.map((x) => x.currentNumber),
+      score.handName
+    );
+    this.scoreInfo = score;
+    return score;
   }
   // selectDie > moves into selectedDice
   //    use the dice index from current dice > store it into selected dice on that key

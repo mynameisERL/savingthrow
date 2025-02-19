@@ -27,14 +27,11 @@ const possibleHands = [
 import Die from "./Die";
 
 class Scorer {
-  projectedScore: number;
-
   dice: Die[];
 
   bestHand: ScoreResult;
 
   constructor(dice: Die[]) {
-    this.projectedScore = 0;
     this.dice = dice;
     this.bestHand = {
       handName: "High Roll",
@@ -44,7 +41,6 @@ class Scorer {
     };
 
     makeObservable(this, {
-      projectedScore: observable,
       dice: observable,
       bestHand: observable,
       calculateHand: action,
@@ -53,9 +49,11 @@ class Scorer {
 
   calculateHand() {
     let currentBestScore = this.bestHand.baseValue;
+    const faces = this.dice.map((x) => x.currentNumber);
 
     for (let i = 0; i < possibleHands.length; i++) {
-      const output = possibleHands[i](this.dice);
+      const output = possibleHands[i](faces);
+      console.log(output);
       if (output.value === true && output.baseValue > currentBestScore) {
         currentBestScore = output.baseValue;
         this.bestHand = output;

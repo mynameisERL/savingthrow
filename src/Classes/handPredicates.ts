@@ -7,29 +7,11 @@ export type ScoreResult = {
   baseValue: number;
   scoreTuple: ScoreTuple;
 };
-export const HighRoll = (dice: Die[]): ScoreResult => {
-  return {
-    handName: "High Roll",
-    value: true,
-    baseValue: 5,
-    scoreTuple: [5, 1],
-  };
-};
-export const Pair = (dice: Die[]): ScoreResult => {
-  const firstFace = dice[0].currentNumber;
-  const secondFace = dice[1].currentNumber;
-  const isValid = firstFace === secondFace;
-  return {
-    handName: "Pair",
-    value: isValid,
-    baseValue: 100,
-    scoreTuple: [10, 2],
-  };
-};
-export const TwoPair = (dice: Die[]): ScoreResult => {
+
+const createMap = (dice: number[]) => {
   const faceCount: { [key: string]: number } = {};
 
-  dice.forEach(({ currentNumber }) => {
+  dice.forEach((currentNumber) => {
     if (!faceCount[currentNumber]) {
       faceCount[currentNumber] = 1;
     } else {
@@ -37,11 +19,44 @@ export const TwoPair = (dice: Die[]): ScoreResult => {
     }
   });
 
-  const values = Object.values(faceCount);
+  return faceCount;
+};
+
+export const HighRoll = (_: number[]): ScoreResult => {
+  return {
+    handName: "High Roll",
+    value: true,
+    baseValue: 5,
+    scoreTuple: [5, 1],
+  };
+};
+export const Pair = (dice: number[]): ScoreResult => {
+  const map = createMap(dice);
+
+  const values = Object.values(map);
+
+  let isValid = false;
+  values.forEach((val) => {
+    if (val >= 2) {
+      isValid = true;
+    }
+  });
+
+  return {
+    handName: "Pair",
+    value: isValid,
+    baseValue: 20,
+    scoreTuple: [10, 2],
+  };
+};
+export const TwoPair = (dice: number[]): ScoreResult => {
+  const map = createMap(dice);
+
+  const values = Object.values(map);
+
   values.sort().reverse();
-  const isValid = values[0] === 2 && values[1] === 2;
-  // sort > 1,2,2
-  // reverse to ensure the 2's are always in the 0 and 1 position
+  const isValid = values[0] >= 2 && values[1] >= 2; // needs two 2's
+  console.log(dice, map, values, isValid, "<<<<<<<<<<");
 
   return {
     handName: "Two Pair",
@@ -50,10 +65,17 @@ export const TwoPair = (dice: Die[]): ScoreResult => {
     scoreTuple: [20, 2],
   };
 };
-export const ThreeOfAKind = (dice: Die[]): ScoreResult => {
-  const firstFace = dice[0].currentNumber;
 
-  const isValid = dice.every((die: Die) => die.currentNumber === firstFace);
+export const ThreeOfAKind = (dice: number[]): ScoreResult => {
+  const map = createMap(dice);
+
+  const values = Object.values(map);
+
+  let isValid = false;
+
+  if (values.includes(3)) {
+    isValid = true;
+  }
 
   return {
     handName: "Three of a Kind",
@@ -62,10 +84,15 @@ export const ThreeOfAKind = (dice: Die[]): ScoreResult => {
     scoreTuple: [30, 3],
   };
 };
-export const FourOfAKind = (dice: Die[]): ScoreResult => {
-  const firstFace = dice[0].currentNumber;
+export const FourOfAKind = (dice: number[]): ScoreResult => {
+  const map = createMap(dice);
 
-  const isValid = dice.every((die: Die) => die.currentNumber === firstFace);
+  const values = Object.values(map);
+  let isValid = false;
+
+  if (values.includes(4)) {
+    isValid = true;
+  }
 
   return {
     handName: "Four of a Kind",
@@ -74,21 +101,15 @@ export const FourOfAKind = (dice: Die[]): ScoreResult => {
     scoreTuple: [35, 4],
   };
 };
-export const FullHouse = (dice: Die[]): ScoreResult => {
-  const faceCount: { [key: string]: number } = {};
+export const FullHouse = (dice: number[]): ScoreResult => {
+  const map = createMap(dice);
 
-  dice.forEach(({ currentNumber }) => {
-    if (!faceCount[currentNumber]) {
-      faceCount[currentNumber] = 1;
-    } else {
-      faceCount[currentNumber]++;
-    }
-  });
+  const values = Object.values(map);
+  let isValid = false;
 
-  const values = Object.values(faceCount);
-  values.sort();
-
-  const isValid = values[0] === 2 && values[1] === 3;
+  if (values.includes(3) && values.includes(2)) {
+    isValid = true;
+  }
 
   return {
     handName: "Full House",
@@ -97,8 +118,8 @@ export const FullHouse = (dice: Die[]): ScoreResult => {
     scoreTuple: [40, 4],
   };
 };
-export const SmallStraight = (dice: Die[]): ScoreResult => {
-  const faces = dice.map((die) => die.currentNumber);
+export const SmallStraight = (dice: number[]): ScoreResult => {
+  const faces = dice.map((die) => die);
   faces.sort();
 
   const possibles = ["1,2,3,4", "2,3,4,5", "3,4,5,6"];
@@ -112,8 +133,8 @@ export const SmallStraight = (dice: Die[]): ScoreResult => {
     scoreTuple: [45, 4],
   };
 };
-export const LargeStraight = (dice: Die[]): ScoreResult => {
-  const faces = dice.map((die) => die.currentNumber);
+export const LargeStraight = (dice: number[]): ScoreResult => {
+  const faces = dice.map((die) => die);
   faces.sort();
 
   const possibles = ["1,2,3,4,5", "2,3,4,5,6"];
@@ -127,10 +148,10 @@ export const LargeStraight = (dice: Die[]): ScoreResult => {
     scoreTuple: [60, 5],
   };
 };
-export const FiveOfAKind = (dice: Die[]): ScoreResult => {
-  const firstNum = dice[0].currentNumber;
+export const FiveOfAKind = (dice: number[]): ScoreResult => {
+  const firstNum = dice[0];
 
-  const isValid = dice.every((die) => die.currentNumber === firstNum);
+  const isValid = dice.every((die) => die === firstNum);
 
   return {
     handName: "Five of a Kind",

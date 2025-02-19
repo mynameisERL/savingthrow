@@ -4,19 +4,22 @@ import Hand from "../Classes/Hand";
 import { useEffect, useState } from "react";
 
 const HandTest = observer(() => {
-  const [hand] = useState(() => new Hand(5, 3));
+  const [hand] = useState(() => new Hand(5, 100));
 
-  useEffect(() => {
-    hand.scorer.calculateHand();
-    console.log("handChanges");
-  }, [hand]);
   return (
     <div>
       <section>
-        <p>{hand.scorer.bestHand.handName}</p>
-        <p>Score: {hand.scorer.bestHand.baseValue}</p>
+        <p>{hand.scoreInfo.handName}</p>
+        <p>Score: {hand.scoreInfo.baseValue}</p>
         <p>Rolls Left : {hand.rollsLeft}</p>
       </section>
+      <button
+        onClick={() => {
+          [0, 1, 2, 3, 4].forEach((i) => hand.selectDie(i));
+        }}
+      >
+        Select All
+      </button>
 
       <ul className="flex flex-row">
         {hand.currentDice.map((dice, index) => {
@@ -47,6 +50,7 @@ const HandTest = observer(() => {
       <button
         onClick={() => {
           hand.rollSelected();
+          hand.calculateScore();
         }}
       >
         Roll Selected
