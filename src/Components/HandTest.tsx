@@ -1,18 +1,27 @@
 import { observer } from "mobx-react";
 
 import Hand from "../Classes/Hand";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const HandTest = observer(() => {
   const [hand] = useState(() => new Hand(5, 3));
 
+  useEffect(() => {
+    hand.scorer.calculateHand();
+    console.log("handChanges");
+  }, [hand]);
   return (
     <div>
-      <section>Rolls Left : {hand.rollsLeft}</section>
+      <section>
+        <p>{hand.scorer.bestHand.handName}</p>
+        <p>Score: {hand.scorer.bestHand.baseValue}</p>
+        <p>Rolls Left : {hand.rollsLeft}</p>
+      </section>
+
       <ul className="flex flex-row">
         {hand.currentDice.map((dice, index) => {
           const selected = hand.selectedDice[index] ? true : false;
-          console.log(index, selected);
+
           return (
             <li
               className={`flex flex-col m-2 ${
@@ -29,7 +38,7 @@ const HandTest = observer(() => {
                   }
                 }}
               >
-                {selected ? "remove" : "select"}
+                {selected ? "-" : "+"}
               </button>
             </li>
           );

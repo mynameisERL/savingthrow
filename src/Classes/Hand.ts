@@ -1,5 +1,6 @@
-import { makeObservable, observable, action } from "mobx";
+import { makeObservable, observable, action, reaction, computed } from "mobx";
 import Die from "./Die";
+import Scorer from "./Scorer";
 // type NumString = "0" | "1" | "2" | "3" | "4" | "5";
 // Rich how do we do this
 // pls help
@@ -9,6 +10,8 @@ class Hand {
   currentDice: Die[];
   selectedDice: { [key: number]: Die }; // roll selectdice.foreach, roll
   rollsLeft: number;
+
+  scorer: Scorer;
   // scorer
 
   constructor(amountOfDice: number, rollsLeft: number) {
@@ -18,13 +21,19 @@ class Hand {
     this.rollsLeft = rollsLeft;
     this.currentHandScore = 0;
     this.selectedDice = {};
+    this.scorer = new Scorer(this.currentDice);
 
     makeObservable(this, {
       currentHandScore: observable,
       currentDice: observable,
       selectedDice: observable,
       rollsLeft: observable,
+      scorer: observable,
+      rollSelected: action,
       selectDie: action,
+      unselectDie: action,
+      decreaseRolls: action,
+      increaseRolls: action,
     });
   }
   // selectDie > moves into selectedDice
