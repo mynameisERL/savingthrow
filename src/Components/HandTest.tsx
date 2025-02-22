@@ -5,18 +5,22 @@ import dab from "../assets/dab.gif";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 import Round from "../Classes/Round";
+import Game from "../Classes/Game";
 
 const HandTest = observer(() => {
-  const [round] = useState(() => new Round(100, 1, 3));
+  const [game] = useState(() => new Game());
+  const round = game.currentRound;
   const hand = round.currentHand;
   const { width, height } = useWindowSize();
   return (
     <div>
-      <Confetti
-        run={hand.scoreInfo.handName === "Five of a Kind"}
-        width={width}
-        height={height}
-      />
+      {hand.scoreInfo.handName === "Five of a Kind" && (
+        <Confetti
+          run={hand.scoreInfo.handName === "Five of a Kind"}
+          width={width}
+          height={height}
+        />
+      )}
       <section>
         {hand.scoreInfo.handName === "Five of a Kind" && (
           <div>
@@ -34,8 +38,13 @@ const HandTest = observer(() => {
           </div>
         )}
       </section>
+      <img
+        className="h-10 w-10 m-auto"
+        src={"src/assets/monsters/" + game.currentEnemy.filename}
+      ></img>
 
-      <p>Round Number: {round.roundNumber}</p>
+      <p>Round Number: {round.roundNumber + 1}</p>
+      <p>{game.currentEnemy.name}</p>
       <p>Enemy health: {round.targetScore}</p>
       <p>Score: {round.currentScore}</p>
       <p>{hand.scoreInfo.handName}</p>
@@ -65,6 +74,7 @@ const HandTest = observer(() => {
               <button
                 onClick={() => {
                   if (selected) {
+                    console.log(hand.selectedDice);
                     hand.unselectDie(index);
                   } else {
                     hand.selectDie(index);
@@ -80,6 +90,7 @@ const HandTest = observer(() => {
       <button
         onClick={() => {
           round.scoreHand();
+          game.evaluateRound();
         }}
       >
         Play Hand
