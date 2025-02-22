@@ -1,13 +1,14 @@
 import { observer } from "mobx-react";
 
-import Hand from "../Classes/Hand";
 import { useState } from "react";
 import dab from "../assets/dab.gif";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
+import Round from "../Classes/Round";
 
 const HandTest = observer(() => {
-  const [hand] = useState(() => new Hand(5, 100));
+  const [round] = useState(() => new Round(100, 1, 3));
+  const hand = round.currentHand;
   const { width, height } = useWindowSize();
   return (
     <div>
@@ -32,10 +33,17 @@ const HandTest = observer(() => {
             </div>
           </div>
         )}
-        <p>{hand.scoreInfo.handName}</p>
-        <p>Score: {hand.scoreInfo.baseValue}</p>
-        <p>Rolls Left : {hand.rollsLeft}</p>
       </section>
+
+      <p>Round Number: {round.roundNumber}</p>
+      <p>Enemy health: {round.targetScore}</p>
+      <p>Score: {round.currentScore}</p>
+      <p>{hand.scoreInfo.handName}</p>
+      <p>{hand.scoreInfo.baseValue}</p>
+      <p>
+        {hand.scoreInfo.scoreTuple[0]} x {hand.scoreInfo.scoreTuple[1]}
+      </p>
+
       <button
         onClick={() => {
           [0, 1, 2, 3, 4].forEach((i) => hand.selectDie(i));
@@ -71,12 +79,21 @@ const HandTest = observer(() => {
       </ul>
       <button
         onClick={() => {
+          round.scoreHand();
+        }}
+      >
+        Play Hand
+      </button>
+      <button
+        onClick={() => {
           hand.rollSelected();
           hand.calculateScore();
         }}
       >
         Roll Selected
       </button>
+      <p>Hands left: {round.handsLeft}</p>
+      <p>Rerolls Left : {hand.rollsLeft}</p>
     </div>
   );
 });
