@@ -85,8 +85,6 @@ class Hand {
   increaseRolls() {
     this.rollsLeft++;
   }
-
-  // calculateScore > call scorer.calculate with this
 }
 
 export default Hand;

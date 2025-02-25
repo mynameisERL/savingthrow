@@ -56,7 +56,6 @@ export const TwoPair = (dice: number[]): ScoreResult => {
 
   values.sort().reverse();
   const isValid = values[0] >= 2 && values[1] >= 2; // needs two 2's
-  console.log(dice, map, values, isValid, "<<<<<<<<<<");
 
   return {
     handName: "Two Pair",
