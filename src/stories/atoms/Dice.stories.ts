@@ -14,20 +14,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const One: Story = {
-  args: {
-    number: 1,
-  },
-};
-
-export const Three: Story = {
+export const DiceThreeSelected: Story = {
   args: {
     number: 3,
+    isSelected: true,
   },
 };
 
-export const Six: Story = {
+export const DiceThreeSixUnselected: Story = {
   args: {
     number: 6,
+    isSelected: false,
   },
 };
