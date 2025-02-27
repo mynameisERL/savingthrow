@@ -1,5 +1,7 @@
+export type DiceNumber = 1 | 2 | 3 | 4 | 5 | 6;
+
 export interface DiceProps {
-  number: 1 | 2 | 3 | 4 | 5 | 6;
+  number: DiceNumber;
   isSelected: boolean;
 }
 

@@ -1,13 +1,20 @@
-import { Dice } from "../atoms/Dice";
+import Die from "../../Classes/Die";
+import { Dice, DiceNumber } from "../atoms/Dice";
 
-export const DiceContainer = () => {
+type DiceContainerProps = {
+  currentDice: Die[];
+};
+
+export const DiceContainer = ({ currentDice }: DiceContainerProps) => {
   return (
-    <section className="bg-gray-200 w-dvh h-30 flex flex-row place-content-center">
-      <Dice number={1} isSelected={false} />
-      <Dice number={1} isSelected={false} />
-      <Dice number={1} isSelected={false} />
-      <Dice number={1} isSelected={false} />
-      <Dice number={1} isSelected={false} />
+    <section className="bg-gray-300 w-dvh h-30 flex flex-row place-content-center">
+      {currentDice.map((die, index) => (
+        <Dice
+          key={index}
+          number={die.currentNumber as DiceNumber}
+          isSelected={false}
+        />
+      ))}
     </section>
   );
 };

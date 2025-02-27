@@ -8,7 +8,7 @@ export interface SideBarProps {}
 /** Primary UI component for user interaction */
 export const SideBar = () => {
   return (
-    <section>
+    <section className="h-dvh grid grid-row-3 p-2 *:p-2 bg-gray-300 border-gray-900 outline-gray-900 outline-4">
       <Header />
       <RoundInfo round={6} enemy="Owlbear Cromwell" money={23} />
       <HandInfo handName="pair" scoreTuple={[20, 4]} />
