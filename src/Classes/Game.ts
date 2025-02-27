@@ -7,7 +7,7 @@ const enemiesList = [
   { name: "Bansheeoncé", health: 300, filename: "banshee.png" },
   { name: "Lich Olascage", health: 450, filename: "halloween.png" },
   { name: "Phantom Hanks", health: 600, filename: "ghost.png" },
-  { name: "Owlbear Cromwell", health: 750, filename: "owlbear.png" },
+  { name: "Owlbear Growlz", health: 750, filename: "owlbear.png" },
 ];
 type EnemyInfo = { name: string; health: number; filename: string };
 
