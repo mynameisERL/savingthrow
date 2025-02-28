@@ -4,7 +4,6 @@ import { useState } from "react";
 import dab from "../assets/dab.gif";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
-import Round from "../Classes/Round";
 import Game from "../Classes/Game";
 
 const HandTest = observer(() => {

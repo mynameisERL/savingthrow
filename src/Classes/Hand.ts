@@ -19,7 +19,7 @@ class Hand {
       .map(() => new Die());
     this.rollsLeft = rollsLeft;
     this.currentHandScore = 0;
-    this.selectedDice = [];
+    this.selectedDice = {};
     this.scoreInfo = {
       handName: "Ready to Roll",
       baseValue: 0,
@@ -45,10 +45,6 @@ class Hand {
     const scorer = new Scorer(this.currentDice);
 
     const score = scorer.calculateHand();
-    console.log(
-      this.currentDice.map((x) => x.currentNumber),
-      score.handName
-    );
     this.scoreInfo = score;
     return score;
   }
@@ -57,6 +53,7 @@ class Hand {
 
   selectDie(diceIndex: number) {
     this.selectedDice[diceIndex] = this.currentDice[diceIndex];
+    this.currentDice[diceIndex].toggleSelected();    
   }
 
   // rollSelected > loops through selectedDice and calls roll method on each die // decrement rollsLeft
@@ -66,6 +63,7 @@ class Hand {
       for (let diceKey in this.selectedDice) {
         const currentDie = this.selectedDice[diceKey];
         currentDie.roll();
+        currentDie.toggleSelected();
         delete this.selectedDice[diceKey];
       }
     }
@@ -74,6 +72,7 @@ class Hand {
   // unSelectDie > moves out selectedDice
   unselectDie(diceIndex: number) {
     delete this.selectedDice[diceIndex];
+    this.currentDice[diceIndex].toggleSelected();  
   }
 
   // decreaseRolls > for use with rollSelected

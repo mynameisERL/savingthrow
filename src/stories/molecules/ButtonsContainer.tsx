@@ -1,10 +1,16 @@
+import { observer } from "mobx-react";
+import Game from "../../Classes/Game";
 import { Button } from "../atoms/Button";
 
-export const ButtonsContainer = () => {
+type ButtonsContainerProps = {
+  game: Game
+}
+
+export const ButtonsContainer = observer(({game} : ButtonsContainerProps) => {
   return (
     <section className="bg-gray-300 w-dvh h-40 flex flex-row place-content-around py-7">
-      <Button label="Attack" />
-      <Button label="Roll" />
+      <Button label="Attack" game={game}/>
+      <Button label="Roll" game={game}/>
     </section>
   );
-};
+});

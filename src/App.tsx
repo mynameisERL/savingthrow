@@ -1,10 +1,14 @@
 import "./App.css";
-import HandTest from "./Components/HandTest";
+import Game from "./Classes/Game";
+import { FightScreen } from "./stories/screen/FightScreen";
 
 function App() {
+
+  const game = new Game();
+
   return (
     <div>
-      <HandTest />
+      <FightScreen game={game}/>
     </div>
   );
 }

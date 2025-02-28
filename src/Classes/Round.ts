@@ -13,7 +13,7 @@ class Round {
     this.roundNumber = roundNumber;
     this.handsLeft = handsLeft;
     this.currentScore = 0;
-    this.currentHand = new Hand(5, 100);
+    this.currentHand = new Hand(5, 8);
     makeObservable(this, {
       targetScore: observable,
       currentScore: observable,

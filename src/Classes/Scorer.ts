@@ -53,7 +53,6 @@ class Scorer {
 
     for (let i = 0; i < possibleHands.length; i++) {
       const output = possibleHands[i](faces);
-      console.log(output);
       if (output.value === true && output.baseValue > currentBestScore) {
         currentBestScore = output.baseValue;
         this.bestHand = output;

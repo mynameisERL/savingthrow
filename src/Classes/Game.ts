@@ -9,7 +9,7 @@ const enemiesList = [
   { name: "Phantom Hanks", health: 600, filename: "ghost.png" },
   { name: "Owlbear Growlz", health: 750, filename: "owlbear.png" },
 ];
-type EnemyInfo = { name: string; health: number; filename: string };
+export type EnemyInfo = { name: string; health: number; filename: string };
 
 type PlayerStates = "active" | "won" | "lost";
 
