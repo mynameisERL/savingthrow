@@ -1,5 +1,5 @@
 import Hand from "./Hand";
-import { makeObservable, observable, action, comparer, computed } from "mobx";
+import { makeObservable, observable, action, computed } from "mobx";
 
 class Round {
   targetScore: number;
@@ -36,7 +36,6 @@ class Round {
   }
 
   get healthPercentage() {
-    console.log(this.currentScore);
     return 100 - this.currentScore / this.onePercentOfHealth;
   }
 }

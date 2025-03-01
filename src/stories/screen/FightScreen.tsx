@@ -10,7 +10,7 @@ type FightScreenProps = {
 export const FightScreen = observer(({ game }: FightScreenProps) => {
   return (
     <main className="flex flex-row">
-      <SideBar round={game.currentRound} enemy={game.currentEnemy}/>
+      <SideBar round={game.currentRound} enemy={game.currentEnemy} />
       <PlayArea game={game} />
     </main>
   );

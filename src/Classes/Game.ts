@@ -12,6 +12,7 @@ const enemiesList = [
 export type EnemyInfo = { name: string; health: number; filename: string };
 
 type PlayerStates = "active" | "won" | "lost";
+type Screens = "fight" | "loading" | "transition";
 
 class Game {
   playerLevel: number;
@@ -20,6 +21,7 @@ class Game {
   enemies: EnemyInfo[];
   currentEnemy: EnemyInfo;
   playerState: PlayerStates;
+  screen: Screens;
 
   constructor() {
     this.playerLevel = 1;
@@ -27,6 +29,11 @@ class Game {
     this.enemies = enemiesList;
     this.currentEnemy = this.enemies[0];
     this.playerState = "active";
+    this.screen = "loading";
+
+    setTimeout(() => {
+      this.changeScreen("fight");
+    }, 3000);
 
     this.currentRound = new Round(
       this.currentEnemy.health,
@@ -41,15 +48,24 @@ class Game {
       currentEnemy: observable,
       playerState: observable,
       currentRound: observable,
+      screen: observable,
       nextRound: action,
       setPlayerState: action,
       evaluateRound: action,
+      changeScreen: action,
     });
   }
 
   evaluateRound() {
     if (this.currentRound.currentScore >= this.currentRound.targetScore) {
+      console.log(this.screen);
       this.nextRound();
+      this.changeScreen("transition");
+      console.log(this.screen);
+      setTimeout(() => {
+        this.changeScreen("fight");
+        console.log(this.screen);
+      }, 3000);
     }
   }
 
@@ -70,6 +86,10 @@ class Game {
 
   setPlayerState(playerState: PlayerStates) {
     this.playerState = playerState;
+  }
+
+  changeScreen(screen: Screens) {
+    this.screen = screen;
   }
 }
 

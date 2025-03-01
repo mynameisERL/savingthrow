@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Hand from "../../Classes/Hand";
 import { observer } from "mobx-react";
 import Die from "../../Classes/Die";
@@ -6,14 +5,13 @@ import Die from "../../Classes/Die";
 export type DiceNumber = 1 | 2 | 3 | 4 | 5 | 6;
 
 export interface DiceProps {
-  index: number
+  index: number;
   number: DiceNumber;
-  hand: Hand
-  die: Die
+  hand: Hand;
+  die: Die;
 }
 
-export const Dice = observer(({ index, number, hand, die}: DiceProps) => {
-  
+export const Dice = observer(({ index, number, hand, die }: DiceProps) => {
   // This is a lookup table for the SVG paths for each dice number - Potentially this could be moved to a separate file
   const diceLookup = {
     1: (
@@ -42,19 +40,17 @@ export const Dice = observer(({ index, number, hand, die}: DiceProps) => {
       viewBox="0 0 24 24"
       fill="white"
       xmlns="http://www.w3.org/2000/svg"
-      stroke={die.selected ? "red" : "black"}
+      stroke={die.selected ? "green" : "black"}
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
       onClick={() => {
         if (die.selected) {
           hand.unselectDie(index);
-        }
-        else {
+        } else {
           hand.selectDie(index);
         }
-      }
-    }
+      }}
     >
       {diceLookup[number]}
     </svg>

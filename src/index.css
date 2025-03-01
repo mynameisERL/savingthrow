@@ -19,6 +19,84 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  max-width: 100dvw;
+  max-height: 90dvh;
+  margin-top: 2rem;
+  overflow-y: hidden;
+}
+
+/* Smoke effect styles */
+.smoke-effect {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.smoke-circle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: float 5s infinite ease-in-out;
+}
+
+.smoke-circle:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 0;
+  animation-duration: 6s;
+}
+
+.smoke-circle:nth-child(2) {
+  width: 120px;
+  height: 120px;
+  top: 20px;
+  left: 50px;
+  animation-duration: 8s;
+}
+
+.smoke-circle:nth-child(3) {
+  width: 80px;
+  height: 80px;
+  top: 50px;
+  left: 100px;
+  animation-duration: 7s;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-50px) scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.2;
+  }
+}
+
+/* Custom flicker animation for torches */
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+}
+
+.animate-flicker {
+  animation: flicker 1.5s infinite ease-in-out;
+}
+
+/* Custom door rotation animation */
+.rotate-y-90 {
+  transform: rotateY(90deg);
 }
