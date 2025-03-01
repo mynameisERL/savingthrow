@@ -10,7 +10,7 @@ export const InventorySlot = ({ label, itemInfo }: InventorySlotProps) => {
       {itemInfo ? (
         <section className="relative group grid">
           <img
-            src={`src/assets/items/${itemInfo.imgUrl}`}
+            src={`/assets/items/${itemInfo.imgUrl}`}
             className="w-30 h-30 m-auto rounded-md"
           ></img>
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-max bg-gray-800 text-white text-sm rounded p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">

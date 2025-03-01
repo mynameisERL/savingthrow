@@ -12,7 +12,7 @@ import InitialLoading from "./stories/screen/InitialLoading";
 const App = observer(() => {
   const [game] = useState(() => new Game());
   const audio = useMemo(
-    () => new Audio("src/assets/music/FIGHT LOOT SHOP.mp3"),
+    () => new Audio("/assets/music/FIGHT LOOT SHOP.mp3"),
     []
   );
   audio.loop = true;

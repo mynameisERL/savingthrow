@@ -39,7 +39,7 @@ const HandTest = observer(() => {
       </section>
       <img
         className="h-10 w-10 m-auto"
-        src={"src/assets/monsters/" + game.currentEnemy.filename}
+        src={"/assets/monsters/" + game.currentEnemy.filename}
       ></img>
 
       <p>Round Number: {round.roundNumber + 1}</p>

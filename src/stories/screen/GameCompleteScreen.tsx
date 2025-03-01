@@ -2,7 +2,7 @@ const GameCompleteScreen = () => {
   return (
     <div className="absolute top-0 left-0 flex items-center justify-center h-[100dvh] w-[100dvw] bg-black overflow-hidden">
       <img
-        src="src/assets/dab.gif"
+        src="/assets/dab.gif"
         alt="Game Complete"
         className="absolute inset-0 w-full h-full object-cover"
       />

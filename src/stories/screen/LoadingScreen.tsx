@@ -10,7 +10,7 @@ const LoadingScreen = () => {
   return (
     <div className="absolute top-0 left-0 flex items-center justify-center h-[100dvh] w-[100dvw] bg-black overflow-hidden">
       {/* Dungeon Wall Texture */}
-      <div className="absolute inset-0 bg-[url('src/assets/textures/bricktexture.jpg')] bg-cover bg-center opacity-50"></div>
+      <div className="absolute inset-0 bg-[url('/assets/textures/bricktexture.jpg')] bg-cover bg-center opacity-50"></div>
 
       <div
         className={`fixed inset-0 flex items-center justify-center transition-opacity duration-1000 ${
