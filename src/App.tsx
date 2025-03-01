@@ -3,11 +3,10 @@ import "./App.css";
 import Game from "./Classes/Game";
 import { FightScreen } from "./stories/screen/FightScreen";
 import LoadingScreen from "./stories/screen/LoadingScreen";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import GameOverScreen from "./stories/screen/GameOver";
 import GameCompleteScreen from "./stories/screen/GameCompleteScreen";
-import useSound from "use-sound";
-import soundtrack from "./assets/music/FIGHT LOOT SHOP.mp3";
+
 import InitialLoading from "./stories/screen/InitialLoading";
 
 const App = observer(() => {

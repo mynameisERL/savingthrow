@@ -8,7 +8,6 @@ export interface HealthBarProps {
 
 export const HealthBar = observer(
   ({ healthPercentage, monsterHealth, currentScore }: HealthBarProps) => {
-    console.log(healthPercentage);
     return (
       <>
         <p className="text-black">

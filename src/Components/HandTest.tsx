@@ -73,7 +73,6 @@ const HandTest = observer(() => {
               <button
                 onClick={() => {
                   if (selected) {
-                    console.log(hand.selectedDice);
                     hand.unselectDie(index);
                   } else {
                     hand.selectDie(index);

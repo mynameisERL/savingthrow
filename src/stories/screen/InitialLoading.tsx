@@ -34,11 +34,12 @@ const InitialLoading = ({ audio, game }: InitialLoadingProps) => {
           </div>
         </div>
 
-        <div className="text-white text-4xl font-bold animate-pulse relative z-10">
-          Saving Throw
-          <br></br>
+        <div className="text-white font-bold relative z-10 text-7xl">
+          <p className="tracking-widest">Saving Throw</p>
+
           <br></br>
           <button
+            className="animate-pulse active:animate-ping"
             onClick={() => {
               game.changeScreen("fight");
               audio.play();
