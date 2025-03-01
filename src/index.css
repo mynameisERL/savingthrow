@@ -100,3 +100,13 @@ body {
 .rotate-y-90 {
   transform: rotateY(90deg);
 }
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}

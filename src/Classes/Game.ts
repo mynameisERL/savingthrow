@@ -64,8 +64,10 @@ class Game {
     if (this.roundNumber >= 5 && monsterIsDefeated) {
       this.changeScreen("game_complete");
     } else if (monsterIsDefeated) {
-      this.nextRound();
-      this.changeScreen("transition");
+      setTimeout(() => {
+        this.nextRound();
+        this.changeScreen("transition");
+      }, 1500);
 
       setTimeout(() => {
         this.changeScreen("fight");

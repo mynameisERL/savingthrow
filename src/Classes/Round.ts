@@ -36,6 +36,7 @@ class Round {
   }
 
   get healthPercentage() {
+    if (this.currentScore > this.targetScore) return 0;
     return 100 - this.currentScore / this.onePercentOfHealth;
   }
 }

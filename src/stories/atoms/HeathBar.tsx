@@ -11,7 +11,8 @@ export const HealthBar = observer(
     return (
       <>
         <p className="text-black">
-          {monsterHealth - currentScore} / {monsterHealth}
+          {currentScore > monsterHealth ? 0 : monsterHealth - currentScore} /{" "}
+          {monsterHealth}
         </p>
         <div className="w-lg bg-red-700 block rounded-full overflow-hidden h-4">
           <div
