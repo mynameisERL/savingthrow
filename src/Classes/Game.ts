@@ -12,7 +12,7 @@ const enemiesList = [
 export type EnemyInfo = { name: string; health: number; filename: string };
 
 type PlayerStates = "active" | "won" | "lost";
-type Screens = "fight" | "loading" | "transition";
+type Screens = "fight" | "loading" | "transition" | "game_over";
 
 class Game {
   playerLevel: number;
@@ -57,7 +57,9 @@ class Game {
   }
 
   evaluateRound() {
-    if (this.currentRound.currentScore >= this.currentRound.targetScore) {
+    const monsterIsDefeated =
+      this.currentRound.currentScore >= this.currentRound.targetScore;
+    if (monsterIsDefeated) {
       console.log(this.screen);
       this.nextRound();
       this.changeScreen("transition");
@@ -66,6 +68,10 @@ class Game {
         this.changeScreen("fight");
         console.log(this.screen);
       }, 3000);
+    } else if (this.currentRound.handsLeft === 0 && !monsterIsDefeated) {
+      setTimeout(() => {
+        this.changeScreen("game_over");
+      }, 800);
     }
   }
 
