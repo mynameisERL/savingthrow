@@ -12,7 +12,12 @@ const enemiesList = [
 export type EnemyInfo = { name: string; health: number; filename: string };
 
 type PlayerStates = "active" | "won" | "lost";
-type Screens = "fight" | "loading" | "transition" | "game_over";
+type Screens =
+  | "fight"
+  | "loading"
+  | "transition"
+  | "game_over"
+  | "game_complete";
 
 class Game {
   playerLevel: number;
@@ -59,7 +64,10 @@ class Game {
   evaluateRound() {
     const monsterIsDefeated =
       this.currentRound.currentScore >= this.currentRound.targetScore;
-    if (monsterIsDefeated) {
+
+    if (this.roundNumber >= 5 && monsterIsDefeated) {
+      this.changeScreen("game_complete");
+    } else if (monsterIsDefeated) {
       console.log(this.screen);
       this.nextRound();
       this.changeScreen("transition");

@@ -4,7 +4,6 @@ const LoadingScreen = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Trigger the fade-in effect after the component mounts
     setIsVisible(true);
   }, []);
 
@@ -31,6 +30,9 @@ const LoadingScreen = () => {
         </div>
 
         <div className="text-white text-4xl font-bold animate-pulse relative z-10">
+          Saving Throw
+          <br></br>
+          <br></br>
           Loading...
         </div>
 

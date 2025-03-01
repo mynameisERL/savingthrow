@@ -5,6 +5,7 @@ import { FightScreen } from "./stories/screen/FightScreen";
 import LoadingScreen from "./stories/screen/LoadingScreen";
 import { useState } from "react";
 import GameOverScreen from "./stories/screen/GameOver";
+import GameCompleteScreen from "./stories/screen/GameCompleteScreen";
 
 const App = observer(() => {
   const [game] = useState(() => new Game());
@@ -18,6 +19,8 @@ const App = observer(() => {
       return <LoadingScreen />;
     case "game_over":
       return <GameOverScreen />;
+    case "game_complete":
+      return <GameCompleteScreen />;
   }
 });
 
