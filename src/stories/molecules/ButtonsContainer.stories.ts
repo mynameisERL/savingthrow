@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ButtonsContainer } from "./ButtonsContainer";
+import Game from "../../Classes/Game";
 
 const meta = {
   title: "Example/ButtonsContainer",
@@ -15,5 +16,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const ButtonContainer: Story = {
-  args: {},
+  args: {
+    game: new Game(),
+  },
 };

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { DiceContainer } from "./DiceContainer";
+import Game from "../../Classes/Game";
 
 const meta = {
   title: "Example/DiceContainer",
@@ -14,6 +15,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const game = new Game();
 export const ButtonContainer: Story = {
-  args: {},
+  args: {
+    currentDice: game.currentRound.currentHand.currentDice,
+    hand: game.currentRound.currentHand,
+  },
 };

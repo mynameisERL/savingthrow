@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Monster } from "./Monster";
+import Game from "../../Classes/Game";
 
 const meta = {
   title: "Example/Monster",
@@ -14,10 +15,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const game = new Game();
 export const ButtonContainer: Story = {
   args: {
     filename: "ghost.png",
-    health: 350,
-    score: 300,
+    round: game.currentRound,
   },
 };

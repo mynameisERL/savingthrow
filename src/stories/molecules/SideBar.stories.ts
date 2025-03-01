@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { SideBar } from "./SideBar";
-import Round from "../../Classes/Round";
+
 import Game from "../../Classes/Game";
 
 const meta = {
@@ -21,7 +21,7 @@ game.nextRound();
 
 export const RoundTwo: Story = {
   args: {
-   round: game.currentRound,
-   enemy: game.currentEnemy
+    round: game.currentRound,
+    enemy: game.currentEnemy,
   },
 };

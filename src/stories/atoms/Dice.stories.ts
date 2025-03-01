@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Dice } from "./Dice";
+import Hand from "../../Classes/Hand";
+import Die from "../../Classes/Die";
 
 const meta = {
   title: "Example/Dice",
@@ -16,14 +18,18 @@ type Story = StoryObj<typeof meta>;
 
 export const DiceThreeSelected: Story = {
   args: {
-    number: 3,
-    isSelected: true,
+    index: 3,
+    number: 1,
+    hand: new Hand(3, 3),
+    die: new Die(),
   },
 };
 
 export const DiceThreeSixUnselected: Story = {
   args: {
-    number: 6,
-    isSelected: false,
+    index: 3,
+    number: 1,
+    hand: new Hand(3, 3),
+    die: new Die(),
   },
 };

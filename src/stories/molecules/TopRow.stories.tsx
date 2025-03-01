@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { TopRow } from "./TopRow";
+import Game from "../../Classes/Game";
 
 const meta = {
   title: "Example/TopRow",
@@ -15,5 +16,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const EmptyLoadout: Story = {
-  args: {},
+  args: {
+    game: new Game(),
+  },
 };
