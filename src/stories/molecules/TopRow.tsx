@@ -17,7 +17,7 @@ export const TopRow = observer(({ game }: TopRowProps) => {
         <InventorySlot label="l.arm" />
         <InventorySlot label="r.arm" />
 
-        <Button label="Bag" game={game} />
+        <Button label="Bag" game={game} disabled={true} />
       </section>
       <p className="z-20 absolute top-0 bg-yellow-900 text-7xl text-gray-200 ml-20 mt-17 rotate-10">
         {" "}
