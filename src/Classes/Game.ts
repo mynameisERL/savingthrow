@@ -36,10 +36,6 @@ class Game {
     this.playerState = "active";
     this.screen = "loading";
 
-    setTimeout(() => {
-      this.changeScreen("fight");
-    }, 3000);
-
     this.currentRound = new Round(
       this.currentEnemy.health,
       this.roundNumber,
