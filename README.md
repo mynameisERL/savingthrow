@@ -2,7 +2,7 @@
 
 Saving Throw is a Yahtzee-based roguelike game that combines strategic dice rolling with thrilling dungeon exploration. Test your luck and skill as you battle enemies and overcome challenges!
 
-You can find a hosted version of this game [here](https://www.saving-throw.vercel.app) - Desktop only at this time.
+You can find a hosted version of this game [here](https://saving-throw.vercel.app) - Desktop only at this time.
 
 This game was the work of;
 
