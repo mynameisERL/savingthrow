@@ -1,50 +1,85 @@
-# React + TypeScript + Vite
+# Saving Throw
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Saving Throw is a Yahtzee-based roguelike game that combines strategic dice rolling with thrilling dungeon exploration. Test your luck and skill as you battle enemies and overcome challenges!
 
-Currently, two official plugins are available:
+You can find a hosted version of this game [here](saving-throw.vercel.app) - Desktop only at this time.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This game was the work of;
 
-## Expanding the ESLint configuration
+Emily Bennett - [emilyb93](github.com/emilyb93)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Lewis Price - [lewispricey](github.com/lewispricey)
 
-- Configure the top-level `parserOptions` property like this:
+Richard Neat - [RNeat](github.com/RNeat)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+With music by Emily Bennett.
+
+As a new challenge for us we decided to try the state management system [MobX](https://mobx.js.org/README.html).
+
+## Features
+
+- **Dice Mechanics**: Roll dice to create the best hand and defeat enemies.
+- **Roguelike Elements**: Increasing challenge in each fight.
+- **Strategic Gameplay**: Plan your re-rolls carefully to survive.
+
+## How to play
+
+Each level contains three rounds, each round consists of three hands, and each hand allows up to three rolls to achieve the best possible combination.
+
+All dice will be automatically selected on the first roll of each round. Click on dice to select them for re-rolling; selected dice will turn green. When ready, press "Roll" to re-roll the selected dice. If you prefer not to select dice manually, pressing "Play" will automatically use the best hand available from the current dice.
+
+## Setup Instructions
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (version 16 or higher recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Steps
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/mynameisERL/saving-throw.git
+cd saving-throw
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
+# or
+yarn install
 ```
+
+3. Start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173` to play the game.
+
+### Build for Production
+
+To create a production build:
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+### Preview Production Build
+
+To preview the production build locally:
+
+```bash
+npm run preview
+# or
+yarn preview
+```
+
+Enjoy the game and may your rolls be ever in your favor!
